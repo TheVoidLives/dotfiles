@@ -1,0 +1,80 @@
+# In Case of settign up Environment copy this file to ~/
+
+# Import Antigen to manage zsh
+source $HOME/dotfiles/configs/zsh/antigen.zsh
+
+# (1) Load the oh-my-zh lib
+antigen use oh-my-zsh
+
+# (2) Load Bundles 
+
+# Filesystem PLugins
+antigen bundle pj   # Project jump FTW
+antigen wd          # Warp Directorty FTW
+
+# Git Plugins
+antigen bundle git 
+antigen bundle github
+
+# Syntax 
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Javscript Plugins
+antigen bundle node
+antigen bundle npm
+antigen bundle coffee
+
+# Python Plugins
+antigen bundle pip
+antigen bundle python
+
+# Environment
+antigen bundle virtualenv
+antigen bundle autoenv
+antigen bubndle mafredi/zsh-zsyncA
+
+#environment
+antigen bundle zsh-docker
+antigen bundle 
+# DB
+antigen bundle zpm-zsh/mysql-colorize
+
+#Fzf bundles
+antigen bundle leophys/zsh-plugin-fzf-finder
+
+# whynot
+# antigen bundle lol
+
+
+# OS specific plugins
+case "$(uname -s)" in 
+    Darwin*)
+        antigen bundle brew
+        antigen bundle gem
+        antigen bundle osx
+        antigen bundle zsh-apple-touchbar
+        ;;
+    Linux*)
+        # Got Nothing at this point...
+        ;;
+    Cygwin*)
+        #antigen bundle cygwin
+        ;;
+
+esac
+
+# (3) Set Theme 
+antigen theme norm
+
+# (4) Apply settinga to Antigen
+antigen apply
+
+# Custome Aliases 
+source ~/dotfiles/configs/zsh/aliases.zsh
+
+# Custome Path Extensions
+source ~/dotfiles/configs/zsh/paths.zsh
+
+# Powerline Support :w
+# Off. Prefer norm theme from zsear 
+# source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh

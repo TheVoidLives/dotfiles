@@ -1,0 +1,94 @@
+set nocursorline " don't highlight current line
+
+" Added - Indenting
+filetype indent on
+set smartindent
+
+" Added - Auto Source .vimrc
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" keyboard shortcuts
+inoremap jj <ESC>
+nnoremap <leader>h :tabfirst<CR>
+nnoremap <leader>j :tabprev<CR>
+nnoremap <leader>k :tabnext<CR>
+nnoremap <leader>l :tablast<CR>
+
+" Goyo :
+nnoremap <leader>L :Limelight!!<CR>
+nnoremap <leader>G :Goyo<CR>
+" highlight search
+"set hlsearch
+"nmap <leader>hl :let @/ = ""<CR>
+
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    colorscheme apprentice
+  else
+    colorscheme desert
+  endif
+endif
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+" Fzf Commandline fux=zzy finding.
+set rtp+=usr/local/opt/fzf
+
+" Python 3???
+let g:pymode_python = 'python3'
+
+let g:neomake_open_list = 2
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
+
+"" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+
+" You Complete Me .py thing
+let g:ycm_global_ycm_extra_conf = '~/.ycm_global_ycm_extra_conf'
+
+
+" Added - Configure Syntastic
+ let g:syntastic_always_populate_loc_list = 1
+ let g:syntastic_auto_loc_list = 1
+ let g:syntastic_check_on_open = 1
+ let g:syntastic_check_on_w = 1 
+ let g:syntastic_enable_balloons = 1
+ let g:syntastic_enable_highlighting = 1
+
+" Added - Configyre Syntastic Languages
+" .c
+ let g:syntastic_c_compiler = 'clang'
+ let g:syntastic_c_compiler_options = '-g -Wall -Werror'
+ let g:syntastic_c_checkers = ['gcc', 'make']
+" .cpp
+
+" .js
+ let g:syntastic_javascript_checkers = ['eslint']
+ let g:Syntastic_javascript_eslint_exe = ['npm run lint--']
+
+" .py
+" let g:syntastic_python_checkers = ['flake8', 'python', 'python3', 'pylint']
+"
+" Added - Omnisharp
+let g:OmniSharp_server_use_mono = 1
+let g:syntastic_cs_checkers = ['code_checker']
