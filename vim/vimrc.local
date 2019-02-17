@@ -7,12 +7,35 @@ set smartindent
 " Added - Auto Source .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+
+set splitbelow                                  " Split split below
+set splitright                                  " Split right
+
 " keyboard shortcuts
-inoremap jj <ESC>
+let mapleader = ","
+ " Split navigation!
+nnoremap <C-J> <C-W><C-J>              
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Tab navigation
 nnoremap <leader>h :tabfirst<CR>
 nnoremap <leader>j :tabprev<CR>
 nnoremap <leader>k :tabnext<CR>
 nnoremap <leader>l :tablast<CR>
+
+inoremap <S-Tab> <Plug>snipMateNextOrTrigger
+inoremap <C-Tab> <Plug>snipMateBack
+
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>] :TagbarToggle<CR>
+nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+inoremap jj <ESC>
 
 " Goyo :
 nnoremap <leader>L :Limelight!!<CR>
@@ -30,65 +53,37 @@ if (&t_Co == 256 || has('gui_running'))
   endif
 endif
 
-" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+" 
+" Plugin Settings
 "
-" This section is here to prevent AlignMaps from adding a bunch of mappings
-" that interfere with the very-common ,a and ,t mappings. This will get run
-" at every startup to remove the AlignMaps for the *next* vim startup.
-"
-" If you do want the AlignMaps mappings, remove this section, remove
-" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
-function! s:RemoveConflictingAlignMaps()
-  if exists("g:loaded_AlignMapsPlugin")
-    AlignMapsClean
-  endif
-endfunction
-command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
-silent! autocmd VimEnter * RemoveConflictingAlignMaps
+let g:NERDSpaceDelims=1
+let g:gitgutter_enabled = 0
 
-" Fzf Commandline fux=zzy finding.
-set rtp+=usr/local/opt/fzf
+" Ale completion | Java
+let g:ale_java_javac_classpath = '.:$HOME/School/UCF/Spring 2019/CAP 4630/lib/PacSimLib.jar'
 
-" Python 3???
-let g:pymode_python = 'python3'
 
-let g:neomake_open_list = 2
+let g:ale_linters = {
+\   'java': ['javac', 'javalsp'],
+\}
 
-" Use deoplete.
+let g:ale_completion_enabled = 1
+
+" Deoplete configuration
 let g:deoplete#enable_at_startup = 1
+let g:airline#extensions#ale#enabled = 1
 
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
+" Markdown browser
+let g:mkdp_browser = '/Applications/Google Chrome.app'
+
+" Airline
+let g:airline_theme = 'simple'
+
+" Python 3
+let g:pymode_python = 'python3'
 
 "" Number of preceding/following paragraphs to include (default: 0)
 let g:limelight_paragraph_span = 1
 
-" You Complete Me .py thing
-let g:ycm_global_ycm_extra_conf = '~/.ycm_global_ycm_extra_conf'
-
-
-" Added - Configure Syntastic
- let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_w = 1 
- let g:syntastic_enable_balloons = 1
- let g:syntastic_enable_highlighting = 1
-
-" Added - Configyre Syntastic Languages
-" .c
- let g:syntastic_c_compiler = 'clang'
- let g:syntastic_c_compiler_options = '-g -Wall -Werror'
- let g:syntastic_c_checkers = ['gcc', 'make']
-" .cpp
-
-" .js
- let g:syntastic_javascript_checkers = ['eslint']
- let g:Syntastic_javascript_eslint_exe = ['npm run lint--']
-
-" .py
-" let g:syntastic_python_checkers = ['flake8', 'python', 'python3', 'pylint']
-"
 " Added - Omnisharp
 let g:OmniSharp_server_use_mono = 1
-let g:syntastic_cs_checkers = ['code_checker']

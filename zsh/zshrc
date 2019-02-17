@@ -1,56 +1,71 @@
 # In Case of settign up Environment copy this file to ~/
 
+echo "Configuring .dotfiles..."
+
+CONFIG=$HOME/.dotfiles/zsh/antigen.zsh
+CONFIG_PATHS=$HOME/.dotfiles/zsh/paths.zsh
+CONFIG_ALIAS=$HOME/.dotfiles/zsh/aliases.zsh
+
 # Import Antigen to manage zsh
-source $HOME/dotfiles/configs/zsh/antigen.zsh
+if [[ ! -a $CONFIG ]]; then
+    echo "FATAL: Unable to load antigen.zsh!";
+    echo -e "Expected location $CONFIG"
+else 
+    source $CONFIG
+fi
 
 # (1) Load the oh-my-zh lib
 antigen use oh-my-zsh
 
 # (2) Load Bundles 
 
-# Filesystem PLugins
-antigen bundle pj   # Project jump FTW
-antigen wd          # Warp Directorty FTW
+### Shell Utilities
+#zsh
+antigen bundle ls
+# antigen bundle zsh-history
+# antigen bundle mafredi/zsh-zsync
+# antigen bundle zsh-users/zsh-syntax-highlighting
+
+# TMUX
+antigen bundle tmux
+
+# FileSystem 
+# antigen bundle pj   # project jump
+antigen bundle wd   # warp directory
 
 # Git Plugins
 antigen bundle git 
 antigen bundle github
 
-# Syntax 
-antigen bundle zsh-users/zsh-syntax-highlighting
-
 # Javscript Plugins
+antigen bundle coffee
 antigen bundle node
 antigen bundle npm
-antigen bundle coffee
 
 # Python Plugins
 antigen bundle pip
 antigen bundle python
 
-# Environment
-antigen bundle virtualenv
-antigen bundle autoenv
-antigen bubndle mafredi/zsh-zsyncA
+# Ruby 
+antigen bundle gem
 
-#environment
+# Environment
+# antigen bundle virtualenv
 antigen bundle zsh-docker
-antigen bundle 
-# DB
+
+# DB 
 antigen bundle zpm-zsh/mysql-colorize
 
-#Fzf bundles
-antigen bundle leophys/zsh-plugin-fzf-finder
+# Man pages
+# antigen bundle bwana
 
-# whynot
-# antigen bundle lol
-
+# Note-taking
+antigen bundle chipsenkbeil/zsh-notes
 
 # OS specific plugins
 case "$(uname -s)" in 
     Darwin*)
         antigen bundle brew
-        antigen bundle gem
         antigen bundle osx
         antigen bundle zsh-apple-touchbar
         ;;
@@ -64,17 +79,33 @@ case "$(uname -s)" in
 esac
 
 # (3) Set Theme 
-antigen theme norm
+# antigen theme denysdovhan/spaceship-prompt
+ antigen theme cdimascio/lambda-zsh-theme
+# antigen theme norm
+# antigen theme obraun
+# antigen theme theunraveler
+# antigen theme trapd00r
+# antigen theme refined
+
+# Fzf keybindings and completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # (4) Apply settinga to Antigen
 antigen apply
 
+clear 
+
 # Custome Aliases 
-source ~/dotfiles/configs/zsh/aliases.zsh
+if [[ -a $CONFIG_ALIAS ]]; then 
+    source $CONFIG_ALIAS
+else
+    echo "WARNING: Custom Aliases not found!"
+fi
 
 # Custome Path Extensions
-source ~/dotfiles/configs/zsh/paths.zsh
+if [[ -a $CONFIG_PATHS ]]; then
+    source $CONFIG_PATHS
+else 
+    echo "WARNING: Custom Paths not found!"
+fi
 
-# Powerline Support :w
-# Off. Prefer norm theme from zsear 
-# source /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh

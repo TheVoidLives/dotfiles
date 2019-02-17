@@ -12,9 +12,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " install Vundle bundles
-if filereadable(expand("~/dotfiles/configs/vim/vimrc.bundles"))  " Edited from maximum-awesome scripts - 4/17/18
-  source ~/dotfiles/configs/vim/vimrc.bundles                    " Ditto
-  source ~/dotfiles/configs/vim/vimrc.bundles.local              " Ditto
+if filereadable(expand("~/.dotfiles/vim/vimrc.bundles"))  " Edited from maximum-awesome scripts - 4/17/18
+  source ~/.dotfiles/vim/vimrc.bundles                    " Ditto
 endif
 
 call vundle#end()
@@ -38,10 +37,10 @@ set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
-set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
+set shiftwidth=4                                            " normal mode indentation commands use 2 spaces
 set showcmd
 set smartcase                                                " case-sensitive search if any caps
-set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
+set softtabstop=4                                            " insert mode tab and backspace use 2 spaces
 set tabstop=8                                                " actual tabs occupy 8 characters
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
@@ -50,7 +49,7 @@ set wildmode=longest,list,full
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
 if exists('$TMUX')  " Support resizing in tmux
-  set ttymouse=xterm2
+  " set ttymouse=xterm2
 endif
 
 " keyboard shortcuts
@@ -114,7 +113,7 @@ endif
 vnoremap p "_dP
 
 " Go crazy! - Edited from Maximum Awesome 4/17/18
-if filereadable(expand("~/dotfiles/configs/vim/vimrc.local"))
+if filereadable(expand("~/.dotfiles/vim/vimrc.local"))
   " In your .vimrc.local, you might like:
   "
   " set autowrite
@@ -124,5 +123,5 @@ if filereadable(expand("~/dotfiles/configs/vim/vimrc.local"))
   "
   " autocmd! bufwritepost .vimrc source ~/.vimrc
   " noremap! jj <ESC>
-  source ~/dotfiles/configs/vim/vimrc.local
+source ~/.dotfiles/vim/vimrc.local
 endif

@@ -1,0 +1,75 @@
+# IMport paths and aliases
+CONFIG=$HOME/.zplug/init.zsh
+CONFIG_PATHS=$HOME/.dotfiles/zsh/paths.zsh
+CONFIG_ALIAS=$HOME/.dotfiles/zsh/aliases.zsh
+
+
+if [[ ! -a $CONFIG ]]; then
+    echo "FATAL: Unable to load zplug!";
+    echo -e "Expected location $CONFIG"
+else 
+    source $CONFIG
+fi
+
+### Shell Utilities
+zplug "zsh-users/zsh-history-substring-search"
+zplug "plugins/history", from:oh-my-zsh
+zplug "plugins/history", from:oh-my-zsh
+
+# TMUX
+zplug "plugins/tmux", from:oh-my-zsh
+
+# FileSystem 
+zplug "plugins/ls", from:oh-my-zsh
+zplug "plugins/wd", from:oh-my-zsh
+
+# Git Plugins
+zplug "plugins/git", from:oh-my-zsh, nice:1
+zplug "plugins/github", from:oh-my-zsh
+
+# Javscript Plugins
+zplug "plugins/coffee", from:oh-my-zsh
+
+# Python Plugins
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/python", from:oh-my-zsh
+
+# Ruby 
+zplug "plugins/gem", from:oh-my-zsh
+
+# Environment
+# antigen bundle virtualenv
+zplug "plugins/zsh-docker", from:oh-my-zsh
+
+# DB 
+zplug "zpm-zsh/mysql-colorize"
+
+# Note-taking
+zplug "chipsenkbeil/zsh-notes" 
+
+# OS specific plugins
+zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "zsh-users/zsh-apple-touchbar", if:"[[ $OSTYPE == *darwin* ]]" 
+
+# antigen theme denysdovhan/spaceship-prompt
+zplug 'cdimascio/lambda-zsh-theme', from:github, nice:10
+
+# Fzf keybindings and completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Custome Aliases 
+if [[ -a $CONFIG_ALIAS ]]; then 
+    source $CONFIG_ALIAS
+else
+    echo "WARNING: Custom Aliases not found!"
+fi
+
+# Custome Path Extensions
+if [[ -a $CONFIG_PATHS ]]; then
+    source $CONFIG_PATHS
+else 
+    echo "WARNING: Custom Paths not found!"
+fi
+
+zplug load --verbose

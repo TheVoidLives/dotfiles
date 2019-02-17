@@ -1,0 +1,19 @@
+# use vim-like keys for splits
+bind-key v split-window -h -c "#{pane_current_path}"
+bind-key s split-window -v -c "#{pane_current_path}"
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+bind-key x kill-pane
+bind-key q confirm-before kill-pane
+
+# Use custom keys for window creation and movement
+bind-key c new-window
+bind-key space next-window
+bind-key bspace previous-window
+bind-key enter next-layout
+bind-key X kill-window
+bind-key Q confirm-before kill-window
+
+
