@@ -21,10 +21,13 @@ Plug 'tpope/vim-vividchalk'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Wal
+Plug 'dylanaraps/wal.vim'
+
 " Utility | Term & TMUX
 Plug 'tpope/vim-obsession'              " Session Saving | Tmux integraiton
 Plug 'tpope/vim-eunuch'                 " Term help
-Plug 'edkolev/tmuxline.vim'             " Tmux statusline integration
+"Plug 'edkolev/tmuxline.vim'             " Tmux statusline integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Utility | Navigation
