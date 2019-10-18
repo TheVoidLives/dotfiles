@@ -1,33 +1,20 @@
 " The OG | Enables help
 Plug 'junegunn/vim-plug'
 
-" Deocomplete configuration
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else 
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 " Theming and usability
-Plug 'altercation/vim-colors-solarized'
 Plug 'austintaylor/vim-indentobject'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-vividchalk'
 
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Statusline
+Plug 'liuchengxu/eleline.vim'
 
 " Wal
 Plug 'dylanaraps/wal.vim'
 
 " Utility | Term & TMUX
 Plug 'tpope/vim-obsession'              " Session Saving | Tmux integraiton
-Plug 'tpope/vim-eunuch'                 " Term help
-"Plug 'edkolev/tmuxline.vim'             " Tmux statusline integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Utility | Navigation
@@ -36,28 +23,20 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug '/usr/local/opt/fzf'               " Use FZF installed via homebrew!
 Plug 'majutsushi/tagbar'                " Class outline viewer
 Plug 'lvht/tagbar-markdown'             " .md tagbar extensions
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'airblade/vim-rooter'              " Project directory root
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} " Markdown preview in chrome!
-Plug 'w0rp/ale'                         " Async linting for the modern coder
+
+" Language Support
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " IDE Functionality | LSP support
 
 " Utiltiy | Editing
-Plug 'tpope/vim-surround'               "surround text w/ {} [] ()
-Plug 'terryma/vim-multiple-cursors'     " Multi-cursos insertion
+Plug 'tpope/vim-surround'                       "surround text w/ {} [] ()
+Plug 'terryma/vim-multiple-cursors'             " Multi-cursos insertion
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'                " Auto endifs, etc
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'tpope/vim-commentary'             " Comment insertion
+Plug 'tpope/vim-endwise'                        " Auto endifs, etc
+Plug 'tpope/vim-commentary'                     " Comment insertion
 Plug 'junegunn/vim-easy-align'
-Plug 'slim-template/vim-slim'           " Syntax highlighting
-
-" Utility | Editing | Snippets
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim' 
-Plug 'garbas/vim-snipmate'              " Snippet insertion!
-Plug 'honza/vim-snippets'               " Insertable snippets! 
 
 " Utility | Editing | Writing
 Plug 'reedes/vim-pencil'
@@ -65,10 +44,7 @@ Plug 'reedes/vim-pencil'
 " Utility | Building
 Plug 'tpope/vim-dispatch'
 
-" Utility | REPL
-Plug 'kassio/neoterm'
-
-" utility | Git 
+" Utility | Git 
 Plug 'airblade/vim-gitgutter'
 
 " JS PLugins
@@ -76,27 +52,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
 
-" Protobuf
-Plug 'eventualbuddha/vim-protobuf'
 
 " Go
 Plug 'fatih/vim-go'
 
 " C#
 Plug 'OmniSharp/omnisharp-vim'
-
-" F#
-Plug 'fsharp/vim-fsharp'
-
-" Haskell
-Plug 'Shougo/vimproc.vim'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'                " haskell deoplete extension
-
-" Latex & Markdown
-" Plug 'gabrielelana/vim-markdown'
-Plug 'nelstrom/vim-markdown-folding'
-Plug 'lervag/vimtex'
-
-" Ethereum
-Plug 'tomlion/vim-solidity'

@@ -25,12 +25,10 @@ nnoremap <leader>j :tabprev<CR>
 nnoremap <leader>k :tabnext<CR>
 nnoremap <leader>l :tablast<CR>
 
-inoremap <S-Tab> <Plug>snipMateNextOrTrigger
-inoremap <C-Tab> <Plug>snipMateBack
-
-nnoremap <leader>a :Ag<space>
+" NERTree 
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
+
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
@@ -40,6 +38,7 @@ inoremap jj <ESC>
 " Goyo :
 nnoremap <leader>L :Limelight!!<CR>
 nnoremap <leader>G :Goyo<CR>
+
 " highlight search
 "set hlsearch
 "nmap <leader>hl :let @/ = ""<CR>
@@ -47,7 +46,7 @@ nnoremap <leader>G :Goyo<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme Atelier_SulphurpoolDark
+      colorscheme gruvbox
   else
     colorscheme desert
   endif
