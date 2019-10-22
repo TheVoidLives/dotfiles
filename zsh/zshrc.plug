@@ -1,5 +1,8 @@
 # IMport paths and aliases
-CONFIG=$HOME/.zplug/init.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+CONFIG=$ZPLUG_HOME/init.zsh
 CONFIG_PATHS=$HOME/.dotfiles/zsh/paths.zsh
 CONFIG_ALIAS=$HOME/.dotfiles/zsh/aliases.zsh
 
@@ -52,8 +55,7 @@ zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "zsh-users/zsh-apple-touchbar", if:"[[ $OSTYPE == *darwin* ]]" 
 
-# antigen theme denysdovhan/spaceship-prompt
-zplug 'cdimascio/lambda-zsh-theme', from:github, nice:10
+# zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 # Fzf keybindings and completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
