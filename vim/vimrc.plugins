@@ -2,59 +2,64 @@
 Plug 'junegunn/vim-plug'
 
 " Theming and usability
-Plug 'austintaylor/vim-indentobject'
 Plug 'flazz/vim-colorschemes'
-Plug 'junegunn/goyo.vim'
-Plug 'tpope/vim-vividchalk'
+Plug 'nightsense/cosmic_latte'
+Plug 'yuttie/hydrangea-vim'
+Plug 'dylanaraps/wal.vim'               " Wal integration
 
 " Statusline
 Plug 'liuchengxu/eleline.vim'
 
-" Wal
-Plug 'dylanaraps/wal.vim'
+" QOL
+Plug 'junegunn/goyo.vim'                " Focused editor. Focused code. 
+Plug 'junegunn/limelight.vim'           " I'm mr meseeks LOOK AT MEEEEEE!
 
-" Utility | Term & TMUX
+" Term & TMUX
 Plug 'tpope/vim-obsession'              " Session Saving | Tmux integraiton
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator' 
+
+" Version control
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Utility | Navigation
-Plug 'junegunn/limelight.vim'           " LOOK AT MEEEEEE!
-Plug 'christoomey/vim-tmux-navigator' 
-Plug '/usr/local/opt/fzf'               " Use FZF installed via homebrew!
-Plug 'majutsushi/tagbar'                " Class outline viewer
-Plug 'lvht/tagbar-markdown'             " .md tagbar extensions
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'airblade/vim-rooter'              " Project directory root
+Plug 'tpope/vim-projectionist'          " Vim projects
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} " Markdown preview in chrome!
 
+" Utility | Fuzzy Finding
+Plug '/usr/local/opt/fzf'               " Use FZF installed via homebrew!
+
 " Language Support
+Plug 'sheerun/vim-polyglot'                     " Vim multi-lang support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " IDE Functionality | LSP support
 
-" Utiltiy | Editing
-Plug 'tpope/vim-surround'                       "surround text w/ {} [] ()
-Plug 'terryma/vim-multiple-cursors'             " Multi-cursos insertion
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-endwise'                        " Auto endifs, etc
-Plug 'tpope/vim-commentary'                     " Comment insertion
-Plug 'junegunn/vim-easy-align'
+
+" Extended Text Objects
+Plug 'austintaylor/vim-indentobject'    " Indent Object
+Plug 'junegunn/vim-easy-align'          " Aligning on text objects
+
+" Editing
+Plug 'tpope/vim-abolish'                " Working with word variations (read the doc)
+Plug 'tpope/vim-surround'               " Surround text w/ {} [] ()
+Plug 'tpope/vim-repeat'                 " Rp
+Plug 'tpope/vim-endwise'                " Auto endifs, etc
+Plug 'tpope/vim-commentary'             " Comment insertion
 
 " Utility | Editing | Writing
 Plug 'reedes/vim-pencil'
+Plug 'junegunn/vim-journal'
 
 " Utility | Building
 Plug 'tpope/vim-dispatch'
 
-" Utility | Git 
-Plug 'airblade/vim-gitgutter'
 
 " JS PLugins
 Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
-
-
-" Go
-Plug 'fatih/vim-go'
 
 " C#
 Plug 'OmniSharp/omnisharp-vim'

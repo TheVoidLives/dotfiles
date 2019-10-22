@@ -68,13 +68,11 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.fdoc set filetype=yaml   " yaml
+autocmd FileType json syntax match Comment +\/\/.\+$+ " jsonc support
+autocmd BufRead,BufNewFile *.md set filetype=markdown " markdown
 autocmd BufRead,BufNewFile *.md set spell
-" extra rails.vim help
-autocmd VimResized * :wincmd =
+autocmd VimResized * :wincmd =                          " ???
 
 " Fix Cursor in TMUX
 if exists('$TMUX')
@@ -90,5 +88,5 @@ vnoremap p "_dP
 
 " Go crazy! - Edited from Maximum Awesome 4/17/18
 if filereadable(expand("~/.dotfiles/vim/vimrc.local"))
-source ~/.dotfiles/vim/vimrc.local
+    source ~/.dotfiles/vim/vimrc.local
 endif
