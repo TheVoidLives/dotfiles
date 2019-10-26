@@ -1,49 +1,45 @@
 set nocursorline " don't highlight current line
 
-" Added - Indenting
-filetype indent on
+filetype indent on      " auto-indent
 set smartindent
+
+set splitbelow          " Split split below
+set splitright          " Split right
+
 
 " Added - Auto Source .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 
-set splitbelow                                  " Split split below
-set splitright                                  " Split right
+" Reload Config
+noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+inoremap jj <ESC>
+
 
 " keyboard shortcuts
 let mapleader = ","
+
+
  " Split navigation!
-nnoremap <C-J> <C-W><C-J>              
+nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Note: CoC settings found in 
-" vim:    ~/.vim/coc-settings.json
-" neovim: ~/.config/nvim/coc-settings.json
-
-" ????
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 
 " Tab navigation
 nnoremap <leader>h :tabfirst<CR>
 nnoremap <leader>j :tabprev<CR>
 nnoremap <leader>k :tabnext<CR>
 nnoremap <leader>l :tablast<CR>
-
-" fzf
-" In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10new' }
-
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
 
 
 " NERTree 
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>F :NERDTreeFind<CR>
+let g:NERDSpaceDelims=1
+
 
 " Easy Align | Visual,Normal
 xmap ga <Plug>(EasyAlign)
@@ -52,54 +48,21 @@ nmap ga <Plug>(EasyAlign)
 
 "Version Control
 nnoremap <leader>g :GitGutterToggle<CR>
-noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-inoremap jj <ESC>
-
-" Goyo :
-nnoremap <leader>L :Limelight!!<CR>
-nnoremap <leader>G :Goyo<CR>
-
-" highlight search
-"set hlsearch
-"nmap <leader>hl :let @/ = ""<CR>
-
-" gui settings
-if (&t_Co == 256 || has('gui_running'))
-  if ($TERM_PROGRAM == 'iTerm.app')
-      colorscheme gruvbox
-  else
-    colorscheme desert
-  endif
-endif
-
-" 
-" Plugin Settings
-"
-let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
 
-" Ale completion | Java
-let g:ale_java_javac_classpath = '.:$HOME/School/UCF/Spring 2019/CAP 4630/lib/PacSimLib.jar'
 
-" Markdown browser
-let g:mkdp_browser = '/Applications/Google Chrome.app'
+" Goyo + Limelight
+nnoremap <leader>L :Limelight!!<CR>
+nnoremap <leader>G :Goyo<CR>
+let g:limelight_paragraph_span = 1  " Number of preceding/following paragraphs to include (default: 0)
 
-" Python 3
-let g:pymode_python = 'python3'
+" FZF
+nnoremap <leader>f :FZF<CR>
 
-"" Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 1
-
-" Added - Omnisharp
-let g:OmniSharp_server_use_mono = 1
-
-" FZF plugin settings
-"
-let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': 'enew' }     " Floating Window Layout
 let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_layout = { 'window': '10new' }
 
-" Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -113,7 +76,7 @@ let g:fzf_colors =
   \ 'pointer': ['fg', 'Exception'],
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+  \ 'header':  ['fg', 'Comment'] }          " Set fzf colors to match color scheme
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -121,4 +84,32 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+" gui settings
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+      colorscheme gruvbox
+  else
+    colorscheme desert
+  endif
+endif
 
+
+" Markdown browser
+let g:mkdp_browser = '/Applications/Google Chrome.app'
+
+
+" Python 3
+let g:pymode_python = 'python3'
+
+
+" Added - Omnisharp
+let g:OmniSharp_server_use_mono = 1
+
+
+" Coc.nvim options
+"
+" Note: CoC settings found in 
+" vim:    ~/.vim/coc-settings.json
+" neovim: ~/.config/nvim/coc-settings.json
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport') " Auto import on save
