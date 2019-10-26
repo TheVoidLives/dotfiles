@@ -1,12 +1,3 @@
-set nocursorline " don't highlight current line
-
-filetype indent on      " auto-indent
-set smartindent
-
-set splitbelow          " Split split below
-set splitright          " Split right
-
-
 " Added - Auto Source .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
@@ -96,10 +87,6 @@ endif
 
 " Markdown browser
 let g:mkdp_browser = '/Applications/Google Chrome.app'
-
-
-" Python 3
-let g:pymode_python = 'python3'
 
 
 " Added - Omnisharp
