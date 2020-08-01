@@ -1,14 +1,16 @@
 " Added - Auto Source .vimrc
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
+" Enable cursor highlight on insert mode
+:autocmd InsertEnter,InsertLeave * set cul!
+
+" keyboard shortcuts
+let mapleader = ","
+
 
 " Reload Config
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 inoremap jj <ESC>
-
-
-" keyboard shortcuts
-let mapleader = ","
 
 
  " Split navigation!
@@ -47,8 +49,9 @@ nnoremap <leader>L :Limelight!!<CR>
 nnoremap <leader>G :Goyo<CR>
 let g:limelight_paragraph_span = 1  " Number of preceding/following paragraphs to include (default: 0)
 
-" FZF
+" FZF"
 nnoremap <leader>f :FZF<CR>
+
 
 let g:fzf_layout = { 'window': 'enew' }     " Floating Window Layout
 let g:fzf_layout = { 'window': '-tabnew' }
@@ -75,7 +78,16 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-" gui settings
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" ooooooo kill em keybindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" GUI Settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
       colorscheme gruvbox
@@ -98,5 +110,10 @@ let g:OmniSharp_server_use_mono = 1
 " Note: CoC settings found in 
 " vim:    ~/.vim/coc-settings.json
 " neovim: ~/.config/nvim/coc-settings.json
+
+"nmap <silent> gt <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport') " Auto import on save
