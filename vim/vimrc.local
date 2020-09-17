@@ -90,7 +90,8 @@ let g:fzf_action = {
 " GUI Settings
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
-      colorscheme gruvbox
+      "colorscheme gruvbox
+      colorscheme afterglow
   else
     colorscheme desert
   endif
