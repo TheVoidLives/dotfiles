@@ -1,3 +1,5 @@
+call plug#begin("~/.vim/plugged")
+
 " The OG | Enables help
 Plug 'junegunn/vim-plug'
 
@@ -14,28 +16,20 @@ Plug 'liuchengxu/eleline.vim'
 Plug 'junegunn/goyo.vim'                " Focused editor. Focused code. 
 Plug 'junegunn/limelight.vim'           " I'm mr meseeks LOOK AT MEEEEEE!
 
-" Term & TMUX
-Plug 'tpope/vim-obsession'              " Session Saving | Tmux integraiton
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'christoomey/vim-tmux-navigator' 
-
 " Version control
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Utility | Navigation
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'airblade/vim-rooter'              " Project directory root
 Plug 'tpope/vim-projectionist'          " Vim projects
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }} " Markdown preview in chrome!
 
 " Utility | Fuzzy Finding
-Plug '/usr/local/opt/fzf'               " Use FZF installed via homebrew!
+Plug 'junegunn/fzf' " Should pickup fzf binary if it is on path
 
 " Language Support
 Plug 'sheerun/vim-polyglot'                     " Vim multi-lang support
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " IDE Functionality | LSP support
-
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} " IDE Functionality | LSP support
 
 " Extended Text Objects
 Plug 'austintaylor/vim-indentobject'    " Indent Object
@@ -48,6 +42,12 @@ Plug 'tpope/vim-repeat'                 " Rp
 Plug 'tpope/vim-endwise'                " Auto endifs, etc
 Plug 'tpope/vim-commentary'             " Comment insertion
 
+" Latex
+Plug 'lervag/vimtex'
+
+" Markdown Preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 " Utility | Editing | Writing
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/vim-journal'
@@ -55,11 +55,7 @@ Plug 'junegunn/vim-journal'
 " Utility | Building
 Plug 'tpope/vim-dispatch'
 
+" Lang Support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" JS PLugins
-Plug 'pangloss/vim-javascript'
-Plug 'kchmck/vim-coffee-script'
-Plug 'leafgarland/typescript-vim'
-
-" C#
-Plug 'OmniSharp/omnisharp-vim'
+call plug#end()
